@@ -26,8 +26,7 @@ export default class RegisterStore {
         this.error = '';
         this.token = '';
         try {
-            if (this.password !== this.passwordConfirmation){
-                this.error = t.passwordConfirmError;
+            if (!this.CheckValidation()){
                 return;
             }
             this.isLoading = true;
@@ -58,5 +57,14 @@ export default class RegisterStore {
     @action
     public changePasswordConfirmation = (passwordConfirmation: string) => {
         this.passwordConfirmation = passwordConfirmation;
+    }
+
+    private CheckValidation() : boolean {
+        if (this.password !== this.passwordConfirmation) {
+            this.error = t.passwordConfirmError;
+            return false;
+        }
+
+        return true;
     }
 }
