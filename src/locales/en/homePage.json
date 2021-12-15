@@ -1,0 +1,10 @@
+{
+    "tabs": {
+      "user": "User",
+      "users": "Users list",
+      "login": "Login",
+      "resource": "Resource",
+      "resources": "Resource list",
+      "register": "Registration"
+    }
+}

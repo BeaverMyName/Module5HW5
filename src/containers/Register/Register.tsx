@@ -1,10 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Container, Button, Row, Col, Spinner, Form } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import { useInjection } from '../../ioc/ioc.react';
 import ownTypes from '../../ioc/ownTypes';
 import type RegisterStore from '../../stores/RegisterStore';
+import Error from '../../components/Error';
 import { useTranslation } from 'react-i18next';
+import AuthButtonSpinner from '../../components/AuthButtonSpinner';
 
 const Register = observer(() => {
     const store = useInjection<RegisterStore>(ownTypes.registerStore);
@@ -37,17 +39,11 @@ const Register = observer(() => {
                             />
                         </Form.Group>
                         { !!store.error && (
-                            <p style={{ color: "red", fontSize: 14}}>{store.error}</p>
+                            <Error error={store.error}/>
                         )}
-                        <Button variant="primary" type="submit">
-                            {store.isLoading ? (
-                                <Spinner animation="border" size="sm"/>
-                            ) : (
-                                `${t('submit')}`
-                            )}
-                        </Button>
+                        <AuthButtonSpinner isLoading={store.isLoading} text={`${t('submit')}`}/>
                         {!!store.token && (
-                            <p className="mt-3 mb-3" style={{color: "green", fontSize: 14, fontWeight: 700}}>`${t('success', { token: store.token })}`</p>
+                            <p className="mt-3 mb-3" style={{color: "green", fontSize: 14, fontWeight: 700}}>{t('success', { token: store.token })}</p>
                         )}
                     </Form>
                 </Col>
