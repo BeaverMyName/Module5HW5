@@ -14,6 +14,12 @@ export default class RegisterStore {
     @observable isLoading = false;
     @observable token = '';
     @observable error = '';
+    @observable firstName = '';
+    @observable lastName = '';
+    @observable username = '';
+    @observable phone = '';
+    @observable gender = '';
+    @observable birthday = '';
 
     public constructor(
         @inject(ownTypes.registerService) private readonly registerService : RegisterService
@@ -59,12 +65,48 @@ export default class RegisterStore {
         this.passwordConfirmation = passwordConfirmation;
     }
 
+    @action
+    public changePhoneNumber = (phone: string) => {
+        this.phone = phone;
+    }
+
+    @action
+    public changeFirstName = (firstName: string) => {
+        this.firstName = firstName;
+    }
+
+    @action
+    public changeLastName = (lastName: string) => {
+        this.lastName = lastName;
+    }
+
+    @action
+    public changeGender = (gender: string) => {
+        this.gender = gender;
+    }
+
+    @action
+    public changeBirthday = (birthday: string) => {
+        this.birthday = birthday;
+    }
+
+    @action
+    public changeUsername = (username: string) => {
+        this.username = username;
+    }
+
     private CheckValidation() : boolean {
+        const regexp = /^[a-z ,.'-]+$/i;
         if (this.password !== this.passwordConfirmation) {
             this.error = t.passwordConfirmError;
-            return false;
+        }
+        else if (!regexp.test(this.firstName) || !regexp.test(this.lastName) || this.firstName.length > 50 || this.lastName.length > 50) {
+            this.error = t.nameError;
+        }
+        else if (this.username.length < 8) {
+            this.error = t.userNameLengthError;
         }
 
-        return true;
+        return this.error.length === 0;
     }
 }

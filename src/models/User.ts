@@ -5,5 +5,3 @@ export interface User {
   last_name: string,
   avatar: string
 }
-
-

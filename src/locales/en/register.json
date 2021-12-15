@@ -2,9 +2,16 @@
     "placeholder": 
     {
         "email": "Enter email",
-        "password": "Password"
+        "password": "Password",
+        "passwordConfirmation": "Confirm",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "username": "Username",
+        "phone": "+38012345678"
     },
     "submit": "Submit",
     "success": "Success! Token is: {{token}}",
-    "passwordConfirmError": "Password mismatch!"
+    "passwordConfirmError": "Password mismatch!",
+    "nameError": "Are you sure you entered your name correctly?",
+    "userNameLengthError": "Username must be at least 8 characters"
 }

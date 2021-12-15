@@ -32,9 +32,6 @@ const HomePage = observer(() => {
           <Tab eventKey={TabsType[TabsType.Users]} title={t('tabs.users')}>
             {store.currentTab === `${TabsType[TabsType.Users]}` && <Users />}
           </Tab>
-          <Tab eventKey={TabsType[TabsType.Login]} title={t('tabs.login')}>
-            {store.currentTab === `${TabsType[TabsType.Login]}` && <Login />}
-          </Tab>
           <Tab eventKey={TabsType[TabsType.Resource]} title={t('tabs.resource')}>
             {store.currentTab === `${TabsType[TabsType.Resource]}` && <Resource />}
           </Tab>
@@ -43,6 +40,9 @@ const HomePage = observer(() => {
           </Tab>
           <Tab eventKey={TabsType[TabsType.Register]} title={t('tabs.register')}>
             {store.currentTab === `${TabsType[TabsType.Register]}` && <Register />}
+          </Tab>
+          <Tab eventKey={TabsType[TabsType.Login]} title={t('tabs.login')}>
+            {store.currentTab === `${TabsType[TabsType.Login]}` && <Login />}
           </Tab>
         </Tabs>
       </Container>

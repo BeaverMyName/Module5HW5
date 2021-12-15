@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
+import './style.css';
 
 interface Props {
     id: string,
@@ -13,12 +14,13 @@ interface Props {
 const FormGroup = (props: Props) => {
     return (
         <Form.Group className="mb-3" controlId={props.id}>
-            <Form.Label>{props.label}</Form.Label>
+            <Form.Label className="auth-label">{props.label}</Form.Label>
             <Form.Control
                 type={props.type}
                 placeholder={props.placeholder}
                 value={props.value}
                 onChange={(ev)=> {props.onChange(ev.target.value)}}
+                required
             />
         </Form.Group>
     )
