@@ -7,6 +7,7 @@ import LoginStore from '../../stores/LoginStore';
 import { useTranslation } from 'react-i18next';
 import Error from '../../components/Error';
 import AuthButtonSpinner from '../../components/AuthButtonSpinner';
+import FormGroup from '../../components/AuthFormGroup';
 
 const Login = observer(() => {
   const store = useInjection<LoginStore>(ownTypes.loginStore);
@@ -19,24 +20,22 @@ const Login = observer(() => {
           <Form onSubmit={(ev)=>{ ev.preventDefault();
                                   store.login();
                                 }}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder={t('placeholder.email')}
-                value={store.email}
-                onChange={(ev)=> {store.changeEmail(ev.target.value)}}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder={t('placeholder.password')}
-                value={store.password}
-                onChange={(ev)=> {store.changePassword(ev.target.value)}}
-              />
-            </Form.Group>
+            <FormGroup
+              id="formBasicEmail"
+              label="Email address"
+              type="email"
+              placeholder={t('placeholder.email')}
+              value={store.email}
+              onChange={store.changeEmail}
+            />
+            <FormGroup
+              id="formBasicPassword"
+              label="Password"
+              type="password"
+              placeholder={t('placeholder.password')}
+              value={store.password}
+              onChange={store.changePassword}
+            />
             {!!store.error && (
               <Error error={store.error}/>
             )}
